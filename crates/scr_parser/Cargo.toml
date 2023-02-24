@@ -1,0 +1,10 @@
+[package]
+name = "scr_parser"
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+keywords.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true

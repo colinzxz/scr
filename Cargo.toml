@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/*",
+]
+
+[workspace.package]
+edition = "2021"
+version = "0.0.0"
+authors = ["Jinsu <jinsuzh@gmail.com>"]
+description = "The Sass Compiler in Rust"
+keywords = ["Sass", "compiler", "parser"]
+homepage = "https://github.com/colinzxz/scr"
+repository = "https://github.com/colinzxz/scr"
+license = "MIT"
+
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+strip = true
+
+# DO NOT SET PANIC TO ABORT
+# we are using catch_unwind for panic recovery
+panic = "unwind"
