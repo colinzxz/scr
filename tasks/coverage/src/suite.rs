@@ -24,10 +24,10 @@ pub enum TestResult {
 }
 
 pub trait Case: Sized + UnwindSafe {
-    fn new(path: PathBuf, code: String, virtual_path: Option<PathBuf>) -> Self;
+    fn new(path: PathBuf, code: String, virtual_path: Option<String>) -> Self;
     fn code(&self) -> &str;
     fn path(&self) -> &Path;
-    fn virtual_path(&self) -> &Option<PathBuf>;
+    fn virtual_path(&self) -> &Option<String>;
     fn skip_test_case(&self) -> bool {
         false
     }
@@ -153,6 +153,8 @@ pub trait Suite<T: Case> {
         let filter = args.filter.as_deref();
         let test_root = self.get_test_root();
 
+        println!("test_root: {test_root:?}");
+
         // get all tests
         let paths = WalkDir::new(test_root)
             .into_iter()
@@ -162,6 +164,8 @@ pub trait Suite<T: Case> {
             .filter(|path| !self.skip_test_path(path))
             .filter(|path| filter.map_or(true, |query| path.to_string_lossy().contains(query)))
             .collect::<Vec<_>>();
+
+        println!("paths: {paths:?}");
 
         let cases = paths
             .into_iter()
@@ -193,6 +197,7 @@ pub trait Suite<T: Case> {
                 })
             })
             .collect::<Vec<_>>();
+        println!("cases: {}", cases.len());
 
         self.save_test_cases(cases);
     }

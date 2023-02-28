@@ -1,3 +1,4 @@
+mod csstree;
 mod sass_spec;
 mod suite;
 
@@ -6,6 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub use csstree::{TestCsstreeCase, TestCsstreeSuite};
 pub use sass_spec::{TestSassSpecCase, TestSassSpecSuite};
 pub use suite::{Case, Suite};
 

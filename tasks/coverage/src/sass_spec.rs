@@ -14,7 +14,7 @@ const FILE_PREFIX: &str = "<===>";
 
 pub struct TestSassSpecCase {
     path: PathBuf,
-    virtual_path: Option<PathBuf>,
+    virtual_path: Option<String>,
     code: String,
     result: TestResult,
 }
@@ -22,7 +22,7 @@ pub struct TestSassSpecCase {
 impl TestSassSpecCase {}
 
 impl Case for TestSassSpecCase {
-    fn new(path: PathBuf, code: String, virtual_path: Option<PathBuf>) -> Self {
+    fn new(path: PathBuf, code: String, virtual_path: Option<String>) -> Self {
         Self { path, virtual_path, code, result: TestResult::ToBeRun }
     }
 
@@ -34,7 +34,7 @@ impl Case for TestSassSpecCase {
         &self.path
     }
 
-    fn virtual_path(&self) -> &Option<PathBuf> {
+    fn virtual_path(&self) -> &Option<String> {
         &self.virtual_path
     }
 
@@ -45,8 +45,8 @@ impl Case for TestSassSpecCase {
     fn should_fail(&self) -> bool {
         let path = self.path().to_string_lossy();
 
-        let virtual_path_contain_error = if let Some(virtual_path) = &self.virtual_path {
-            virtual_path.to_string_lossy().contains("error")
+        let virtual_path_contain_error = if let Some(virtual_path) = self.virtual_path() {
+            virtual_path.contains("error")
         } else {
             false
         };
@@ -69,7 +69,7 @@ impl<T: Case> TestSassSpecSuite<T> {
         source.split(HRX_SECTION_SEPARATOR).filter(|code| !code.is_empty()).for_each(|c| {
             let mut code = String::new();
             let mut is_case_file = false;
-            let mut virtual_path: Option<PathBuf> = None;
+            let mut virtual_path: Option<String> = None;
 
             c.lines().for_each(|line| {
                 if line.starts_with(FILE_PREFIX) {
@@ -87,7 +87,7 @@ impl<T: Case> TestSassSpecSuite<T> {
                         .map_or(false, |name| name == "input.scss" || name == "input.sass")
                     {
                         is_case_file = true;
-                        virtual_path = Some(file_path.to_path_buf());
+                        virtual_path = Some(file_path.to_string_lossy().to_string());
                     }
                 } else if is_case_file {
                     code += line;

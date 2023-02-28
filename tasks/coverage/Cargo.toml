@@ -11,6 +11,9 @@ repository.workspace = true
 license.workspace = true
 
 [dependencies]
+serde = {workspace = true, features = ["derive"]}
+serde_json = {workspace = true}
+
 console = "0.15.5"
 encoding_rs = "0.8.32"
 encoding_rs_io = "0.1.7"

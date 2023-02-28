@@ -4,3 +4,10 @@
 	branch = main
 	shallow = true
 	ignore = dirty
+[submodule "tasks/coverage/csstree"]
+	path = tasks/coverage/csstree
+	url = https://github.com/csstree/csstree.git
+	branch = master
+	shallow = true
+	ignore = dirty
+

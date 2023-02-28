@@ -15,6 +15,10 @@ homepage = "https://github.com/colinzxz/scr"
 repository = "https://github.com/colinzxz/scr"
 license = "MIT"
 
+[workspace.dependencies]
+serde = "1.0.152"
+serde_json = "1.0.93"
+
 
 [profile.release]
 lto = "fat"
