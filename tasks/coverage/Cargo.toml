@@ -1,0 +1,20 @@
+[package]
+name = "scr_coverage"
+publish = false
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+keywords.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[dependencies]
+console = "0.15.5"
+encoding_rs = "0.8.32"
+encoding_rs_io = "0.1.7"
+pico-args = "0.5.0"
+similar = "2.2.1"
+walkdir = "2.3.2"
+

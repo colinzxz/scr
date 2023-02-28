@@ -1,0 +1,6 @@
+[submodule "tasks/coverage/sass-spec"]
+	path = tasks/coverage/sass-spec
+	url = https://github.com/sass/sass-spec.git
+	branch = main
+	shallow = true
+	ignore = dirty
