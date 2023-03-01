@@ -1,6 +1,7 @@
 use pico_args::Arguments;
 use scr_coverage::{
-    CliArgs, Suite, TestCsstreeCase, TestCsstreeSuite, TestSassSpecCase, TestSassSpecSuite,
+    CliArgs, Suite, TestCsstreeCase, TestCsstreeSuite, TestPostcssCase, TestPostcssSuite,
+    TestSassSpecCase, TestSassSpecSuite,
 };
 
 fn main() {
@@ -19,14 +20,22 @@ fn main() {
         TestSassSpecSuite::<TestSassSpecCase>::new().run("SassSpec", &args);
     };
 
-    let run_csstree = || TestCsstreeSuite::<TestCsstreeCase>::new().run("Csstree", &args);
+    let run_csstree = || {
+        TestCsstreeSuite::<TestCsstreeCase>::new().run("Csstree", &args);
+    };
+
+    let run_postcss = || {
+        TestPostcssSuite::<TestPostcssCase>::new().run("Postcss", &args);
+    };
 
     match task {
         "sass" => run_sass_spec(),
         "csstree" => run_csstree(),
+        "postcss" => run_postcss(),
         _ => {
             run_sass_spec();
             run_csstree();
+            run_postcss();
         }
-    }
+    };
 }

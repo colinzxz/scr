@@ -1,4 +1,5 @@
 mod csstree;
+mod postcss;
 mod sass_spec;
 mod suite;
 
@@ -8,6 +9,7 @@ use std::{
 };
 
 pub use csstree::{TestCsstreeCase, TestCsstreeSuite};
+pub use postcss::{TestPostcssCase, TestPostcssSuite};
 pub use sass_spec::{TestSassSpecCase, TestSassSpecSuite};
 pub use suite::{Case, Suite};
 

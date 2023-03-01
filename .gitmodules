@@ -11,3 +11,9 @@
 	shallow = true
 	ignore = dirty
 
+[submodule "tasks/coverage/postcss-parser-tests"]
+	path = tasks/coverage/postcss-parser-tests
+	url = git@github.com:postcss/postcss-parser-tests.git
+	branch = main
+	shallow = true
+	ignore = dirty
