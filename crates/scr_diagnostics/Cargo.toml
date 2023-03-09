@@ -1,5 +1,5 @@
 [package]
-name = "scr_parser"
+name = "scr_diagnostics"
 edition.workspace = true
 version.workspace = true
 authors.workspace = true
@@ -10,6 +10,6 @@ repository.workspace = true
 license.workspace = true
 
 [dependencies]
-scr_allocator = { path = "../scr_allocator" }
 scr_ast = { path = "../scr_ast" }
-scr_diagnostics = { path = "../scr_diagnostics" }
+miette = "5.5.0"
+thiserror = "1.0.38"
